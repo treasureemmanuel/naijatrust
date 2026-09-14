@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NaijaTrust Financial</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+:root{
+    --green:#00a86b;
+    --dark-green:#007f52;
+    --light-green:#e9fff6;
+    --white:#fff;
+    --text:#17221d;
+    --muted:#7b8781;
+    --red:#e5484d;
+    --border:#e9eeeb;
+    --bg:#f6f8fa;
+    --yellow:#f4b400;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+}
+
+button,input,select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* LOGIN */
+
+.login-screen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(145deg,#eafff5,#f7fffb);
+}
+
+.login-card{
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:30px 24px;
+    border-radius:24px;
+    box-shadow:0 15px 45px rgba(0,0,0,.08);
+}
+
+.brand{
+    text-align:center;
+    margin-bottom:28px;
+}
+
+.brand-icon{
+    width:62px;
+    height:62px;
+    margin:auto;
+    border-radius:18px;
+    background:var(--green);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.brand h1{
+    margin-top:12px;
+    font-size:24px;
+}
+
+.brand p{
+    color:var(--muted);
+    margin-top:5px;
+}
+
+.field{
+    margin-bottom:16px;
+}
+
+.field label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.field input,
+.field select{
+    width:100%;
+    border:1px solid var(--border);
+    padding:14px;
+    border-radius:12px;
+    outline:none;
+    background:white;
+}
+
+.field input:focus,
+.field select:focus{
+    border-color:var(--green);
+}
+
+.primary-btn{
+    width:100%;
+    border:0;
+    padding:15px;
+    background:var(--green);
+    color:white;
+    border-radius:13px;
+    font-weight:bold;
+    font-size:15px;
+}
+
+.primary-btn:hover{
+    background:var(--dark-green);
+}
+
+.small-note{
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+    margin-top:15px;
+}
+
+/* APP */
+
+#app{
+    min-height:100vh;
+    padding-bottom:80px;
+}
+
+.top-header{
+    height:68px;
+    background:white;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+    position:sticky;
+    top:0;
+    z-index:20;
+}
+
+.header-brand{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-weight:bold;
+}
+
+.small-logo{
+    width:36px;
+    height:36px;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--green);
+    color:white;
+    font-weight:bold;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.icon-btn{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:white;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:var(--light-green);
+    color:var(--dark-green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+/* CONTENT */
+
+.page{
+    max-width:760px;
+    margin:auto;
+    padding:20px 16px;
+}
+
+.greeting{
+    margin-bottom:18px;
+}
+
+.greeting h2{
+    font-size:22px;
+}
+
+.greeting p{
+    color:var(--muted);
+    margin-top:4px;
+}
+
+/* BALANCE */
+
+.balance-card{
+    background:linear-gradient(135deg,var(--green),var(--dark-green));
+    color:white;
+    padding:22px;
+    border-radius:22px;
+    box-shadow:0 10px 25px rgba(0,168,107,.2);
+}
+
+.balance-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.balance-label{
+    font-size:13px;
+    opacity:.85;
+}
+
+.balance-value{
+    font-size:31px;
+    font-weight:bold;
+    margin-top:7px;
+}
+
+.eye-btn{
+    background:rgba(255,255,255,.16);
+    color:white;
+    border:0;
+    border-radius:10px;
+    padding:8px 10px;
+}
+
+.account-row{
+    display:flex;
+    justify-content:space-between;
+    margin-top:25px;
+    padding-top:15px;
+    border-top:1px solid rgba(255,255,255,.2);
+    font-size:13px;
+}
+
+.account-row span:last-child{
+    font-weight:bold;
+}
+
+/* QUICK ACTIONS */
+
+.section-title{
+    margin:25px 0 13px;
+    font-size:17px;
+}
+
+.quick-actions{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.quick-btn{
+    border:1px solid var(--border);
+    background:white;
+    padding:13px 5px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.quick-icon{
+    width:40px;
+    height:40px;
+    margin:auto;
+    border-radius:12px;
+    background:var(--light-green);
+    color:var(--green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+}
+
+.quick-btn p{
+    margin-top:8px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* PROMO */
+
+.promo{
+    background:white;
+    border:1px solid var(--border);
+    padding:18px;
+    border-radius:18px;
+    margin-top:22px;
+}
+
+.promo strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.promo p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.5;
+}
+
+/* TRANSACTIONS */
+
+.transaction{
+    background:white;
+    border:1px solid var(--border);
+    padding:15px;
+    border-radius:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:9px;
+}
+
+.transaction-left{
+    display:flex;
+    gap:11px;
+    align-items:center;
+}
+
+.transaction-icon{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    background:var(--light-green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.transaction-title{
+    font-size:14px;
+    font-weight:bold;
+}
+
+.transaction-date{
+    font-size:11px;
+    color:var(--muted);
+    margin-top:4px;
+}
+
+.credit{
+    color:var(--green);
+    font-weight:bold;
+}
+
+.debit{
+    color:var(--red);
+    font-weight:bold;
+}
+
+/* FORMS */
+
+.form-card{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    border:1px solid var(--border);
+}
+
+.page-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.back-btn{
+    border:1px solid var(--border);
+    background:white;
+    width:38px;
+    height:38px;
+    border-radius:11px;
+}
+
+.page-header h2{
+    font-size:20px;
+}
+
+.account-name-box{
+    margin-top:-5px;
+    margin-bottom:16px;
+    padding:13px;
+    background:var(--light-green);
+    border:1px solid #c9f4e2;
+    border-radius:12px;
+}
+
+.account-name-label{
+    color:var(--muted);
+    font-size:11px;
+}
+
+.account-name{
+    font-weight:bold;
+    color:var(--dark-green);
+    margin-top:4px;
+}
+
+.verify-status{
+    font-size:12px;
+    margin-top:5px;
+}
+
+.bank-search{
+    position:relative;
+}
+
+.bank-results{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:12px;
+    margin-top:5px;
+    max-height:220px;
+    overflow:auto;
+    position:absolute;
+    left:0;
+    right:0;
+    z-index:10;
+}
+
+.bank-item{
+    padding:12px;
+    border-bottom:1px solid var(--border);
+    cursor:pointer;
+}
+
+.bank-item:hover{
+    background:var(--light-green);
+}
+
+.selected-bank{
+    background:var(--light-green);
+    color:var(--dark-green);
+    font-weight:bold;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+/* RECEIPT */
+
+.receipt{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    border:1px solid var(--border);
+    text-align:center;
+}
+
+.success-icon{
+    width:70px;
+    height:70px;
+    background:var(--light-green);
+    color:var(--green);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:35px;
+    margin:auto;
+}
+
+.receipt h2{
+    margin-top:15px;
+}
+
+.receipt-amount{
+    font-size:30px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.receipt-details{
+    text-align:left;
+    margin-top:20px;
+}
+
+.receipt-row{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
+    font-size:13px;
+}
+
+.receipt-row span:first-child{
+    color:var(--muted);
+}
+
+.receipt-row span:last-child{
+    font-weight:bold;
+    text-align:right;
+}
+
+/* PROFILE */
+
+.profile-card{
+    background:white;
+    border-radius:20px;
+    padding:22px;
+    border:1px solid var(--border);
+    text-align:center;
+}
+
+.big-avatar{
+    width:75px;
+    height:75px;
+    margin:auto;
+    border-radius:50%;
+    background:var(--light-green);
+    color:var(--green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    font-weight:bold;
+}
+
+.profile-card h2{
+    margin-top:12px;
+}
+
+.profile-card p{
+    color:var(--muted);
+    margin-top:5px;
+}
+
+.profile-option{
+    margin-top:10px;
+    background:white;
+    border:1px solid var(--border);
+    padding:16px;
+    border-radius:14px;
+    display:flex;
+    justify-content:space-between;
+}
+
+/* NOTIFICATION */
+
+.notification{
+    position:fixed;
+    top:78px;
+    left:50%;
+    transform:translateX(-50%);
+    width:calc(100% - 30px);
+    max-width:430px;
+    background:#17221d;
+    color:white;
+    padding:14px 16px;
+    border-radius:13px;
+    z-index:100;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:70px;
+    background:white;
+    border-top:1px solid var(--border);
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:30;
+}
+
+.nav-btn{
+    border:0;
+    background:none;
+    color:var(--muted);
+    font-size:11px;
+    text-align:center;
+}
+
+.nav-icon{
+    font-size:19px;
+    margin-bottom:4px;
+}
+
+.nav-btn.active{
+    color:var(--green);
+    font-weight:bold;
+}
+
+/* MOBILE */
+
+@media(max-width:450px){
+    .quick-actions{
+        gap:7px;
+    }
+
+    .balance-value{
+        font-size:27px;
+    }
+
+    .page{
+        padding:18px 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen" class="login-screen">
+
+    <div class="login-card">
+
+        <div class="brand">
+            <div class="brand-icon">N</div>
+            <h1>NaijaTrust Financial</h1>
+            <p>Secure personal banking</p>
+        </div>
+
+        <div class="field">
+            <label>Username</label>
+            <input id="loginUsername" type="text" placeholder="Enter username">
+        </div>
+
+        <div class="field">
+            <label>Password</label>
+            <input id="loginPassword" type="password" placeholder="Enter password">
+        </div>
+
+        <button class="primary-btn" onclick="login()">Login</button>
+
+        <div class="small-note">
+            Local banking interface for testing.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- APP -->
+<div id="app" class="hidden">
+
+    <header class="top-header">
+
+        <div class="header-brand">
+            <div class="small-logo">N</div>
+            <span>NaijaTrust</span>
+        </div>
+
+        <div class="header-right">
+            <button class="icon-btn" onclick="showNotification('No new notifications')">🔔</button>
+            <div class="avatar">TE</div>
+        </div>
+
+    </header>
+
+
+    <!-- HOME -->
+    <main id="homePage" class="page">
+
+        <div class="greeting">
+            <h2>Welcome, Treasure 👋</h2>
+            <p>Here is your account overview.</p>
+        </div>
+
+        <div class="balance-card">
+
+            <div class="balance-top">
+                <div>
+                    <div class="balance-label">Available Balance</div>
+                    <div id="balanceValue" class="balance-value">₦1,850,750.00</div>
+                </div>
+
+                <button class="eye-btn" onclick="toggleBalance()">Hide</button>
+            </div>
+
+            <div class="account-row">
+                <span>Savings Account</span>
+                <span>•••• 4821</span>
+            </div>
+
+        </div>
+
+
+        <h3 class="section-title">Quick Actions</h3>
+
+        <div class="quick-actions">
+
+            <button class="quick-btn" onclick="openPage('transferPage')">
+                <div class="quick-icon">↗</div>
+                <p>Transfer</p>
+            </button>
+
+            <button class="quick-btn" onclick="openPage('depositPage')">
+                <div class="quick-icon">＋</div>
+                <p>Deposit</p>
+            </button>
+
+            <button class="quick-btn" onclick="openPage('withdrawPage')">
+                <div class="quick-icon">−</div>
+                <p>Withdraw</p>
+            </button>
+
+            <button class="quick-btn" onclick="openPage('transactionsPage')">
+                <div class="quick-icon">☷</div>
+                <p>History</p>
+            </button>
+
+        </div>
+
+
+        <div class="promo">
+            <strong>Account Protection</strong>
+            <p>
+                Never share your password, PIN or security codes with anyone.
+            </p>
+        </div>
+
+
+        <h3 class="section-title">Recent Transactions</h3>
+
+        <div id="recentTransactions"></div>
+
+    </main>
+
+
+    <!-- TRANSFER -->
+    <main id="transferPage" class="page hidden">
+
+        <div class="page-header">
+            <button class="back-btn" onclick="openPage('homePage')">←</button>
+            <h2>Transfer Money</h2>
+        </div>
+
+        <div class="form-card">
+
+            <div class="field">
+                <label>Bank</label>
+
+                <div class="bank-search">
+
+                    <input
+                        id="bankInput"
+                        type="text"
+                        placeholder="Search bank"
+                        oninput="searchBanks()"
+                        autocomplete="off"
+                    >
+
+                    <div id="bankResults" class="bank-results hidden"></div>
+
+                </div>
+            </div>
+
+            <div id="selectedBank" class="selected-bank hidden"></div>
+
+            <div class="field">
+                <label>Account Number</label>
+
+                <input
+                    id="accountNumber"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="10"
+                    placeholder="Enter 10-digit account number"
+                    oninput="lookupAccount()"
+                >
+            </div>
+
+            <div id="accountNameBox" class="account-name-box hidden">
+
+                <div class="account-name-label">
+                    ACCOUNT NAME
+                </div>
+
+                <div id="accountName" class="account-name"></div>
+
+                <div id="verifyStatus" class="verify-status"></div>
+
+            </div>
+
+            <div class="field">
+                <label>Amount</label>
+                <input
+                    id="transferAmount"
+                    type="number"
+                    min="1"
+                    placeholder="₦0.00"
+                >
+            </div>
+
+            <div class="field">
+                <label>Narration</label>
+                <input
+                    id="narration"
+                    type="text"
+                    placeholder="What is this transfer for?"
+                >
+            </div>
+
+            <button class="primary-btn" onclick="makeTransfer()">
+                Transfer Money
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- DEPOSIT -->
+    <main id="depositPage" class="page hidden">
+
+        <div class="page-header">
+            <button class="back-btn" onclick="openPage('homePage')">←</button>
+            <h2>Deposit</h2>
+        </div>
+
+        <div class="form-card">
+
+            <div class="field">
+                <label>Amount</label>
+                <input id="depositAmount" type="number" min="1" placeholder="₦0.00">
+            </div>
+
+            <button class="primary-btn" onclick="depositMoney()">
+                Add Money
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- WITHDRAW -->
+    <main id="withdrawPage" class="page hidden">
+
+        <div class="page-header">
+            <button class="back-btn" onclick="openPage('homePage')">←</button>
+            <h2>Withdraw</h2>
+        </div>
+
+        <div class="form-card">
+
+            <div class="field">
+                <label>Amount</label>
+                <input id="withdrawAmount" type="number" min="1" placeholder="₦0.00">
+            </div>
+
+            <button class="primary-btn" onclick="withdrawMoney()">
+                Withdraw
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- TRANSACTIONS -->
+    <main id="transactionsPage" class="page hidden">
+
+        <div class="page-header">
+            <button class="back-btn" onclick="openPage('homePage')">←</button>
+            <h2>Transactions</h2>
+        </div>
+
+        <div id="allTransactions"></div>
+
+    </main>
+
+
+    <!-- PROFILE -->
+    <main id="profilePage" class="page hidden">
+
+        <div class="page-header">
+            <button class="back-btn" onclick="openPage('homePage')">←</button>
+            <h2>Profile</h2>
+        </div>
+
+        <div class="profile-card">
+
+            <div class="big-avatar">TE</div>
+
+            <h2>Treasure Emmanuel</h2>
+            <p>Personal Account</p>
+
+        </div>
+
+        <div class="profile-option">
+            <span>Account Number</span>
+            <strong>•••• 4821</strong>
+        </div>
+
+        <div class="profile-option">
+            <span>Account Type</span>
+            <strong>Savings</strong>
+        </div>
+
+        <div class="profile-option">
+            <span>Status</span>
+            <strong style="color:#00a86b;">Active</strong>
+        </div>
+
+    </main>
+
+
+    <!-- RECEIPT -->
+    <main id="receiptPage" class="page hidden">
+
+        <div class="receipt">
+
+            <div class="success-icon">✓</div>
+
+            <h2>Transfer Successful</h2>
+
+            <div id="receiptAmount" class="receipt-amount">
+                ₦0.00
+            </div>
+
+            <div class="receipt-details">
+
+                <div class="receipt-row">
+                    <span>Recipient</span>
+                    <span id="receiptName">-</span>
+                </div>
+
+                <div class="receipt-row">
+                    <span>Bank</span>
+                    <span id="receiptBank">-</span>
+                </div>
+
+                <div class="receipt-row">
+                    <span>Account</span>
+                    <span id="receiptAccount">-</span>
+                </div>
+
+                <div class="receipt-row">
+                    <span>Reference</span>
+                    <span id="receiptReference">-</span>
+                </div>
+
+                <div class="receipt-row">
+                    <span>Status</span>
+                    <span style="color:#00a86b;">Successful</span>
+                </div>
+
+            </div>
+
+            <br>
+
+            <button class="primary-btn" onclick="openPage('homePage')">
+                Done
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+
+        <button id="navHome" class="nav-btn active" onclick="openPage('homePage')">
+            <div class="nav-icon">⌂</div>
+            Home
+        </button>
+
+        <button id="navHistory" class="nav-btn" onclick="openPage('transactionsPage')">
+            <div class="nav-icon">☷</div>
+            History
+        </button>
+
+        <button id="navTransfer" class="nav-btn" onclick="openPage('transferPage')">
+            <div class="nav-icon">↗</div>
+            Transfer
+        </button>
+
+        <button id="navProfile" class="nav-btn" onclick="openPage('profilePage')">
+            <div class="nav-icon">●</div>
+            Profile
+        </button>
+
+        <button class="nav-btn" onclick="logout()">
+            <div class="nav-icon">↪</div>
+            Exit
+        </button>
+
+    </nav>
+
+</div>
+
+
+<div id="notification" class="notification hidden"></div>
+
+
+<script>
+
+/* ================================
+   ACCOUNT DATA
+================================ */
+
+let balance = 1850750;
+
+const myTestAccount = {
+    number: "1234567890",
+    name: "Treasure Emmanuel"
+};
+
+const testAccounts = {
+
+    "1111111111": "John Doe",
+    "2222222222": "Michael James",
+    "3333333333": "David Williams",
+    "4444444444": "Daniel Johnson",
+    "5555555555": "Samuel Brown",
+    "6666666666": "Christopher Wilson",
+    "7777777777": "Emmanuel Okafor",
+    "8888888888": "Joshua Anderson",
+    "9999999999": "Benjamin Thomas"
+
+};
+
+
+/* ================================
+   BANKS
+================================ */
+
+const banks = [
+
+    "Access Bank",
+    "Citibank Nigeria",
+    "Ecobank Nigeria",
+    "Fidelity Bank",
+    "First Bank of Nigeria",
+    "First City Monument Bank",
+    "Globus Bank",
+    "Guaranty Trust Bank",
+    "Heritage Bank",
+    "Jaiz Bank",
+    "Keystone Bank",
+    "Lotus Bank",
+    "Moniepoint",
+    "OPay",
+    "PalmPay",
+    "Polaris Bank",
+    "Premium Trust Bank",
+    "Providus Bank",
+    "Stanbic IBTC Bank",
+    "Standard Chartered Bank Nigeria",
+    "Sterling Bank",
+    "SunTrust Bank",
+    "TAJBank",
+    "Titan Trust Bank",
+    "Union Bank",
+    "United Bank for Africa",
+    "Unity Bank",
+    "Wema Bank",
+    "Zenith Bank",
+    "NaijaTrust Financial"
+
+];
+
+let selectedBank = "";
+
+let transactions = [
+
+    {
+        title:"Salary Payment",
+        amount:500000,
+        type:"credit",
+        date:"Today"
+    },
+
+    {
+        title:"Transfer to Savings",
+        amount:-150000,
+        type:"debit",
+        date:"Yesterday"
+    },
+
+    {
+        title:"Cash Deposit",
+        amount:250000,
+        type:"credit",
+        date:"2 days ago"
+    }
+
+];
+
+
+/* ================================
+   LOGIN
+================================ */
+
+function login(){
+
+    const username =
+        document.getElementById("loginUsername").value.trim();
+
+    const password =
+        document.getElementById("loginPassword").value.trim();
+
+    if(!username || !password){
+
+        showNotification("Enter your username and password.");
+
+        return;
+    }
+
+    document.getElementById("loginScreen")
+        .classList.add("hidden");
+
+    document.getElementById("app")
+        .classList.remove("hidden");
+
+    renderTransactions();
+
+    showNotification("Welcome back, Treasure.");
+
+}
+
+
+/* ================================
+   LOGOUT
+================================ */
+
+function logout(){
+
+    document.getElementById("app")
+        .classList.add("hidden");
+
+    document.getElementById("loginScreen")
+        .classList.remove("hidden");
+
+    document.getElementById("loginUsername").value = "";
+    document.getElementById("loginPassword").value = "";
+
+}
+
+
+/* ================================
+   PAGE NAVIGATION
+================================ */
+
+function openPage(pageId){
+
+    const pages = [
+
+        "homePage",
+        "transferPage",
+        "depositPage",
+        "withdrawPage",
+        "transactionsPage",
+        "profilePage",
+        "receiptPage"
+
+    ];
+
+    pages.forEach(id => {
+
+        document.getElementById(id)
+            .classList.add("hidden");
+
+    });
+
+    document.getElementById(pageId)
+        .classList.remove("hidden");
+
+
+    document.querySelectorAll(".nav-btn")
+        .forEach(btn => btn.classList.remove("active"));
+
+
+    if(pageId === "homePage"){
+        document.getElementById("navHome").classList.add("active");
+    }
+
+    if(pageId === "transactionsPage"){
+        document.getElementById("navHistory").classList.add("active");
+    }
+
+    if(pageId === "transferPage"){
+        document.getElementById("navTransfer").classList.add("active");
+    }
+
+    if(pageId === "profilePage"){
+        document.getElementById("navProfile").classList.add("active");
+    }
+
+}
+
+
+/* ================================
+   BALANCE
+================================ */
+
+let balanceHidden = false;
+
+function toggleBalance(){
+
+    balanceHidden = !balanceHidden;
+
+    const value =
+        document.getElementById("balanceValue");
+
+    const button =
+        document.querySelector(".eye-btn");
+
+    if(balanceHidden){
+
+        value.textContent = "₦••••••••";
+        button.textContent = "Show";
+
+    }else{
+
+        value.textContent = formatMoney(balance);
+        button.textContent = "Hide";
+
+    }
+
+}
+
+
+/* ================================
+   ACCOUNT NAME LOOKUP
+================================ */
+
+function lookupAccount(){
+
+    const input =
+        document.getElementById("accountNumber");
+
+    const number =
+        input.value.replace(/\D/g,"").slice(0,10);
+
+    input.value = number;
+
+    const box =
+        document.getElementById("accountNameBox");
+
+    const name =
+        document.getElementById("accountName");
+
+    const status =
+        document.getElementById("verifyStatus");
+
+
+    box.classList.add("hidden");
+
+    if(number.length === 0){
+        return;
+    }
+
+    if(number.length < 10){
+
+        return;
+    }
+
+
+    /*
+       LOCAL TEST ACCOUNT VERIFICATION
+
+       This does NOT query real banks.
+
+       1234567890 = Treasure Emmanuel
+       Other listed numbers = test accounts.
+    */
+
+
+    let accountName = null;
+
+
+    if(number === myTestAccount.number){
+
+        accountName = myTestAccount.name;
+
+    }else if(testAccounts[number]){
+
+        accountName = testAccounts[number];
+
+    }
+
+
+    if(accountName){
+
+        name.textContent = accountName;
+
+        status.textContent =
+            "Test account verified";
+
+        status.style.color =
+            "#00a86b";
+
+        box.classList.remove("hidden");
+
+    }else{
+
+        name.textContent =
+            "No local test account record found.";
+
+        status.textContent =
+            "Use one of the built-in test account numbers.";
+
+        status.style.color =
+            "#e5484d";
+
+        box.classList.remove("hidden");
+
+    }
+
+}
+
+
+/* ================================
+   BANK SEARCH
+================================ */
+
+function searchBanks(){
+
+    const input =
+        document.getElementById("bankInput");
+
+    const results =
+        document.getElementById("bankResults");
+
+    const search =
+        input.value.toLowerCase().trim();
+
+
+    results.innerHTML = "";
+
+
+    if(!search){
+
+        results.classList.add("hidden");
+
+        return;
+    }
+
+
+    const filtered =
+        banks.filter(bank =>
+            bank.toLowerCase().includes(search)
+        );
+
+
+    if(filtered.length === 0){
+
+        results.innerHTML =
+            `<div class="bank-item">No bank found</div>`;
+
+    }else{
+
+        filtered.forEach(bank => {
+
+            const item =
+                document.createElement("div");
+
+            item.className = "bank-item";
+
+            item.textContent = bank;
+
+            item.onclick = function(){
+
+                selectBank(bank);
+
+            };
+
+            results.appendChild(item);
+
+        });
+
+    }
+
+
+    results.classList.remove("hidden");
+
+}
+
+
+/* ================================
+   SELECT BANK
+================================ */
+
+function selectBank(bank){
+
+    selectedBank = bank;
+
+    document.getElementById("bankInput").value = bank;
+
+    document.getElementById("bankResults")
+        .classList.add("hidden");
+
+    const selected =
+        document.getElementById("selectedBank");
+
+    selected.textContent =
+        "Selected Bank: " + bank;
+
+    selected.classList.remove("hidden");
+
+}
+
+
+/* ================================
+   TRANSFER
+================================ */
+
+function makeTransfer(){
+
+    const accountNumber =
+        document.getElementById("accountNumber")
+            .value.trim();
+
+    const amount =
+        Number(
+            document.getElementById("transferAmount")
+                .value
+        );
+
+    const narration =
+        document.getElementById("narration")
+            .value.trim();
+
+    const accountName =
+        document.getElementById("accountName")
+            .textContent.trim();
+
+
+    if(!selectedBank){
+
+        showNotification("Select a bank first.");
+
+        return;
+    }
+
+
+    if(accountNumber.length !== 10){
+
+        showNotification(
+            "Enter a 10-digit account number."
+        );
+
+        return;
+    }
+
+
+    if(
+        !accountName ||
+        accountName.includes("No local")
+    ){
+
+        showNotification(
+            "Verify a local test account first."
+        );
+
+        return;
+    }
+
+
+    if(!amount || amount <= 0){
+
+        showNotification(
+            "Enter a valid amount."
+        );
+
+        return;
+    }
+
+
+    if(amount > balance){
+
+        showNotification(
+            "Insufficient local balance."
+        );
+
+        return;
+    }
+
+
+    balance -= amount;
+
+
+    transactions.unshift({
+
+        title:"Transfer to " + accountName,
+
+        amount:-amount,
+
+        type:"debit",
+
+        date:"Just now"
+
+    });
+
+
+    updateBalance();
+
+    renderTransactions();
+
+
+    const reference =
+        "NTF" +
+        Math.floor(
+            1000000000 +
+            Math.random() * 9000000000
+        );
+
+
+    document.getElementById("receiptAmount")
+        .textContent = formatMoney(amount);
+
+    document.getElementById("receiptName")
+        .textContent = accountName;
+
+    document.getElementById("receiptBank")
+        .textContent = selectedBank;
+
+    document.getElementById("receiptAccount")
+        .textContent = "•••• " +
+            accountNumber.slice(-4);
+
+    document.getElementById("receiptReference")
+        .textContent = reference;
+
+
+    openPage("receiptPage");
+
+
+    showNotification(
+        "Local transfer recorded successfully."
+    );
+
+}
+
+
+/* ================================
+   DEPOSIT
+================================ */
+
+function depositMoney(){
+
+    const amount =
+        Number(
+            document.getElementById("depositAmount")
+                .value
+        );
+
+
+    if(!amount || amount <= 0){
+
+        showNotification(
+            "Enter a valid amount."
+        );
+
+        return;
+    }
+
+
+    balance += amount;
+
+
+    transactions.unshift({
+
+        title:"Cash Deposit",
+
+        amount:amount,
+
+        type:"credit",
+
+        date:"Just now"
+
+    });
+
+
+    document.getElementById("depositAmount")
+        .value = "";
+
+
+    updateBalance();
+
+    renderTransactions();
+
+    openPage("homePage");
+
+    showNotification(
+        formatMoney(amount) +
+        " added to local balance."
+    );
+
+}
+
+
+/* ================================
+   WITHDRAW
+================================ */
+
+function withdrawMoney(){
+
+    const amount =
+        Number(
+            document.getElementById("withdrawAmount")
+                .value
+        );
+
+
+    if(!amount || amount <= 0){
+
+        showNotification(
+            "Enter a valid amount."
+        );
+
+        return;
+    }
+
+
+    if(amount > balance){
+
+        showNotification(
+            "Insufficient local balance."
+        );
+
+        return;
+    }
+
+
+    balance -= amount;
+
+
+    transactions.unshift({
+
+        title:"Cash Withdrawal",
+
+        amount:-amount,
+
+        type:"debit",
+
+        date:"Just now"
+
+    });
+
+
+    document.getElementById("withdrawAmount")
+        .value = "";
+
+
+    updateBalance();
+
+    renderTransactions();
+
+    openPage("homePage");
+
+    showNotification(
+        formatMoney(amount) +
+        " withdrawn from local balance."
+    );
+
+}
+
+
+/* ================================
+   UPDATE BALANCE
+================================ */
+
+function updateBalance(){
+
+    if(!balanceHidden){
+
+        document.getElementById("balanceValue")
+            .textContent = formatMoney(balance);
+
+    }
+
+}
+
+
+/* ================================
+   TRANSACTIONS
+================================ */
+
+function renderTransactions(){
+
+    const recent =
+        document.getElementById("recentTransactions");
+
+    const all =
+        document.getElementById("allTransactions");
+
+
+    let html = "";
+
+
+    transactions.forEach(transaction => {
+
+        const sign =
+            transaction.amount >= 0 ? "+" : "";
+
+        const amountClass =
+            transaction.amount >= 0
+            ? "credit"
+            : "debit";
+
+
+        html += `
+
+            <div class="transaction">
+
+                <div class="transaction-left">
+
+                    <div class="transaction-icon">
+                        ${transaction.amount >= 0 ? "↓" : "↑"}
+                    </div>
+
+                    <div>
+
+                        <div class="transaction-title">
+                            ${escapeHTML(transaction.title)}
+                        </div>
+
+                        <div class="transaction-date">
+                            ${escapeHTML(transaction.date)}
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="${amountClass}">
+                    ${sign}${formatMoney(
+                        Math.abs(transaction.amount)
+                    )}
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    recent.innerHTML =
+        transactions.slice(0,3)
+        .map(transaction => {
+
+            const sign =
+                transaction.amount >= 0 ? "+" : "";
+
+            const amountClass =
+                transaction.amount >= 0
+                ? "credit"
+                : "debit";
+
+            return `
+
+                <div class="transaction">
+
+                    <div class="transaction-left">
+
+                        <div class="transaction-icon">
+                            ${transaction.amount >= 0 ? "↓" : "↑"}
+                        </div>
+
+                        <div>
+
+                            <div class="transaction-title">
+                                ${escapeHTML(transaction.title)}
+                            </div>
+
+                            <div class="transaction-date">
+                                ${escapeHTML(transaction.date)}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="${amountClass}">
+                        ${sign}${formatMoney(
+                            Math.abs(transaction.amount)
+                        )}
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+
+    all.innerHTML = html;
+
+}
+
+
+/* ================================
+   MONEY FORMAT
+================================ */
+
+function formatMoney(amount){
+
+    return "₦" +
+        Number(amount).toLocaleString(
+            "en-NG",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* ================================
+   NOTIFICATION
+================================ */
+
+function showNotification(message){
+
+    const notification =
+        document.getElementById("notification");
+
+    notification.textContent = message;
+
+    notification.classList.remove("hidden");
+
+
+    clearTimeout(window.notificationTimer);
+
+
+    window.notificationTimer =
+        setTimeout(() => {
+
+            notification.classList.add("hidden");
+
+        },3000);
+
+}
+
+
+/* ================================
+   SECURITY HELPER
+================================ */
+
+function escapeHTML(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* ================================
+   INITIAL LOAD
+================================ */
+
+renderTransactions();
+
+</script>
+
+</body>
+</html>
